@@ -14,23 +14,31 @@ const SearchScreen = () => {
     };
 
     return <>
+        <Text style={styles.Header}>Find a restuarant {"\n"}based on your budget!</Text>
         <SearchBar
             term={term}
             onTermChange={setTerm}
             onTermSubmit={() => searchApi(term)}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
-
-        <View style={styles.Divider} />
         <ScrollView>
             <ResultsList results={filterResultsByPrice('$')} title='Budget Friendly' />
-            <ResultsList results={filterResultsByPrice('$$')} title='Regular Prices' />
-            <ResultsList results={filterResultsByPrice('$$$')} title='Big Spender' />
+            <ResultsList results={filterResultsByPrice('$$')} title='Regular' />
+            <ResultsList results={filterResultsByPrice('$$$')} title='Expensive' />
         </ScrollView>
     </>
 };
 
 const styles = StyleSheet.create({
+    Header: {
+        color: "gray",
+        fontSize: 25,
+        marginHorizontal: 25,
+        marginTop: 15,
+        fontWeight: 'bold'
+
+    },
+
     Divider: {
         paddingHorizontal: 0,
         height: 10,

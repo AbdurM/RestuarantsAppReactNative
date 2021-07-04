@@ -1,31 +1,31 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet} from 'react-native';
+import { View, Image, Text, StyleSheet } from 'react-native';
 
-const ResultsDetail = ({result})=> {
+const ResultsDetail = ({ result }) => {
 
-    return <View style= {styles.container}>
+    return <View style={styles.container}>
         <Image
-        style= {styles.imageStyle}
-            source = {{uri: result.image_url}}
-            />
-        <Text style= {styles.name}>{result.name}</Text>
+            style={styles.imageStyle}
+            source={{ uri: result.image_url }}
+        />
+        <Text style={styles.name}>{result.name}</Text>
         <Text style>{result.rating} stars {result.review_count} reviews</Text>
     </View>
 };
 
-const styles = StyleSheet.create ({
-container: {
-    marginLeft: 15
-},
-imageStyle: {
-    height: 120,
-    width: 250,
-    borderRadius:4,
-    marginBottom: 5
-},
-name: {
-    fontWeight: 'bold'
-}
+const styles = StyleSheet.create({
+    container: {
+        marginLeft: 15
+    },
+    imageStyle: {
+        height: 120,
+        width: 250,
+        borderRadius: 4,
+        marginBottom: 5
+    },
+    name: {
+        fontWeight: 'bold'
+    }
 });
 
 export default ResultsDetail;
