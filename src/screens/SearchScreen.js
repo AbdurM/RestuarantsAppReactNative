@@ -8,37 +8,39 @@ const SearchScreen = () => {
     const [term, setTerm] = useState('');
     const [searchApi, results, errorMessage] = useResults();
 
-    const filterResultsByPrice = (price) => {
-        //price === $ || $$ ||$$$
-        return results.filter(x => x.price === price);
+    const filterResultsByRating = (min, max) => {
+        return results.filter(x => x.rating >= min && x.rating < max);
     };
 
-    return <>
-        <Text style={styles.Header}>Find a restuarant {"\n"}based on your budget!</Text>
+    return <View style={styles.container}>
+        <Text style={styles.Header}>Find the best rated{"\n"}Restaurants here!</Text>
         <SearchBar
             term={term}
             onTermChange={setTerm}
             onTermSubmit={() => searchApi(term)}
         />
         {errorMessage ? <Text>{errorMessage}</Text> : null}
-        <ScrollView>
-            <ResultsList results={filterResultsByPrice('$')} title='Budget Friendly' />
-            <ResultsList results={filterResultsByPrice('$$')} title='Regular' />
-            <ResultsList results={filterResultsByPrice('$$$')} title='Expensive' />
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.scrollView} >
+            <ResultsList results={filterResultsByRating(4, 5)} title='Best rated' />
+            <ResultsList results={filterResultsByRating(3, 4)} title='Regular' />
+            <ResultsList results={filterResultsByRating(0, 3)} title='Poor rating' />
         </ScrollView>
-    </>
+    </View>
 };
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: 'white',
+        flex: 1
+    },
     Header: {
         color: "gray",
         fontSize: 25,
         marginHorizontal: 25,
-        marginTop: 15,
+        marginTop: 20,
         fontWeight: 'bold'
 
     },
-
     Divider: {
         paddingHorizontal: 0,
         height: 10,

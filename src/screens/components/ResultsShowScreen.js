@@ -22,13 +22,6 @@ const ResultsShowScreen = ({ navigation }) => {
 
     };
 
-    const getOpenString = () => {
-        let openString = "";
-        openString += result.hours.is_open_now ? 'Open' : 'Closed'
-        return openString;
-    }
-
-
     useEffect(() => {
         getResult(id);
     }, []);
@@ -49,18 +42,19 @@ const ResultsShowScreen = ({ navigation }) => {
             <Text style={styles.title}>{result.name}</Text>
             <View style={styles.detailView}>
                 <View style={styles.subView1}>
-                    <Text style={styles.subText1}>{result.display_phone}</Text>
-                    <Text style={styles.subText2}>{getOpenString()}</Text>
+                    <Text style={styles.subText1}>{result.rating} star rating</Text>
+                    <Text style={styles.subText2}>{result.review_count} reviews</Text>
                 </View>
                 <View style={styles.verticalDivider} />
                 <View style={styles.subView2}>
-                    <Text style={styles.subText2}>{getAddress()}</Text>
+                    <Text style={styles.subText1}>Ph: {result.display_phone}</Text>
+                    <Text style={styles.subText2}>Addr: {getAddress()}</Text>
                 </View>
             </View>
             <View style={styles.horizontalDivider} />
-
+            <Text style={styles.subHeading}>More Photos</Text>
             <FlatList
-                style={{ height: 50, marginLeft: 20 }}
+                style={{ height: 100, marginLeft: 20 }}
                 data={result.photos}
                 horizontal
                 keyExtractor={(photo) => photo}
@@ -82,7 +76,7 @@ const styles = StyleSheet.create({
     },
     lowerView: {
         marginTop: -50,
-        flex: 1.5,
+        flex: 1,
         backgroundColor: 'white',
         borderRadius: 40
     },
@@ -125,9 +119,20 @@ const styles = StyleSheet.create({
         opacity: 0.85
 
     },
+    subHeading: {
+        alignItems: 'center',
+        marginLeft: 25,
+        marginTop: 10,
+        marginBottom: 20,
+        color: '#52747E',
+        fontSize: 20,
+        fontWeight: 'bold',
+        opacity: 0.85
+
+    },
     image: {
-        height: 100,
-        width: 100,
+        height: 130,
+        width: 180,
         marginTop: 10,
         borderRadius: 20,
         marginRight: 10

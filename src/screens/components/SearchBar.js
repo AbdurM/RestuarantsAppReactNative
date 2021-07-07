@@ -23,19 +23,24 @@ const styles = StyleSheet.create({
         marginTop: 30,
         backgroundColor: 'white',
         borderColor: 'lightgray',
-        height: 45,
-        borderRadius: 10,
+        height: 60,
+        borderRadius: 15,
         marginHorizontal: 25,
         flexDirection: 'row',
-        marginBottom: 30
+        marginBottom: 15,
+        shadowColor: 'gray',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 5
     },
     inputStyle: {
-        fontSize: 14,
+        fontSize: 16,
+        fontWeight: 'bold',
         flex: 1
     },
     iconStyle: {
-        fontSize: 20,
-        color: 'lightgray',
+        fontSize: 25,
+        color: 'gray',
         alignSelf: 'center',
         marginHorizontal: 15
     }

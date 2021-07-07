@@ -36,12 +36,13 @@ const styles = StyleSheet.create({
     titleStyle: {
         color: '#52747E',
         alignSelf: 'flex-start',
-        fontSize: 18,
+        fontSize: 23,
         fontWeight: 'bold',
         marginLeft: 15,
-        marginBottom: 5,
+        marginVertical: 7,
         borderRadius: 10,
-        padding: 3
+        padding: 3,
+        opacity: 0.8
     }
 });
 
