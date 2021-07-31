@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Image, ScrollView } from 'react-native';
-import yelp from '../../api/yelp';
+import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity } from 'react-native';
+import yelp from '../api/yelp';
 
 const ResultsShowScreen = ({ navigation }) => {
     const [result, setResult] = useState(null);
@@ -9,7 +9,7 @@ const ResultsShowScreen = ({ navigation }) => {
     const getResult = async (id) => {
         const response = await yelp.get(`/${id}`);
         setResult(response.data);
-        console.log(result);
+        console.log(response.data);
     }
 
     const getAddress = () => {
@@ -49,6 +49,7 @@ const ResultsShowScreen = ({ navigation }) => {
                 <View style={styles.subView2}>
                     <Text style={styles.subText1}>Ph: {result.display_phone}</Text>
                     <Text style={styles.subText2}>Addr: {getAddress()}</Text>
+                    <Text style={styles.subText2} onPress={() => navigation.navigate('ShowRestuarantLocation', { coordinates: result.coordinates, name: result.name })}>View on Map</Text>
                 </View>
             </View>
             <View style={styles.horizontalDivider} />
@@ -59,10 +60,12 @@ const ResultsShowScreen = ({ navigation }) => {
                 horizontal
                 keyExtractor={(photo) => photo}
                 renderItem={({ item }) =>
-                    <Image
-                        source={{ uri: item }}
-                        style={styles.image}
-                    />
+                    <TouchableOpacity onPress={() => navigation.navigate('ShowImage', { uri: item, title: result.name })}>
+                        <Image
+                            source={{ uri: item }}
+                            style={styles.image}
+                        />
+                    </TouchableOpacity>
                 }
             />
         </View>
@@ -77,6 +80,7 @@ const styles = StyleSheet.create({
     lowerView: {
         marginTop: -50,
         flex: 1,
+        paddingBottom: 50,
         backgroundColor: 'white',
         borderRadius: 40
     },
@@ -131,7 +135,7 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        height: 130,
+        height: 180,
         width: 180,
         marginTop: 10,
         borderRadius: 20,
