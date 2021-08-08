@@ -49,13 +49,13 @@ const ResultsShowScreen = ({ navigation }) => {
                 <View style={styles.subView2}>
                     <Text style={styles.subText1}>Ph: {result.display_phone}</Text>
                     <Text style={styles.subText2}>Addr: {getAddress()}</Text>
-                    <Text style={styles.subText2} onPress={() => navigation.navigate('ShowRestuarantLocation', { coordinates: result.coordinates, name: result.name })}>View on Map</Text>
+                    <Text style={styles.subText3} onPress={() => navigation.navigate('ShowRestuarantLocation', { coordinates: result.coordinates, name: result.name })}>View on Map</Text>
                 </View>
             </View>
             <View style={styles.horizontalDivider} />
             <Text style={styles.subHeading}>More Photos</Text>
             <FlatList
-                style={{ height: 100, marginLeft: 20 }}
+                style={{ paddingLeft: 20 }}
                 data={result.photos}
                 horizontal
                 keyExtractor={(photo) => photo}
@@ -80,7 +80,6 @@ const styles = StyleSheet.create({
     lowerView: {
         marginTop: -50,
         flex: 1,
-        paddingBottom: 50,
         backgroundColor: 'white',
         borderRadius: 40
     },
@@ -126,7 +125,7 @@ const styles = StyleSheet.create({
     subHeading: {
         alignItems: 'center',
         marginLeft: 25,
-        marginTop: 10,
+        marginTop: 0,
         marginBottom: 20,
         color: '#52747E',
         fontSize: 20,
@@ -135,8 +134,8 @@ const styles = StyleSheet.create({
 
     },
     image: {
-        height: 180,
-        width: 180,
+        height: 100,
+        width: 150,
         marginTop: 10,
         borderRadius: 20,
         marginRight: 10
@@ -148,6 +147,10 @@ const styles = StyleSheet.create({
     subText2: {
         marginTop: 10,
         color: 'gray'
+    },
+    subText3: {
+        marginTop: 10,
+        color: 'skyblue'
     }
 });
 
