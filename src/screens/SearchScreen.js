@@ -28,9 +28,16 @@ const SearchScreen = () => {
     </View>
 };
 
+SearchScreen.navigationOptions = () => {
+    return {
+      headerShown: false,
+    };
+  };
+
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'white',
+        marginTop:40,
+        backgroundColor: 'transparent',
         flex: 1
     },
     Header: {
