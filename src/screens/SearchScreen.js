@@ -6,7 +6,7 @@ import ResultsList from './components/ResultsList';
 
 const SearchScreen = () => {
     const [term, setTerm] = useState('');
-    const [searchApi, results, errorMessage] = useResults();
+    const [searchApi, results, location, errorMessage] = useResults();
 
     const filterResultsByRating = (min, max) => {
         return results.filter(x => x.rating >= min && x.rating < max);
